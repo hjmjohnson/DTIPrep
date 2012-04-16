@@ -477,8 +477,7 @@ void CIntensityMotionCheck::GetImagesInformation()
     = GradientDirectionContainerType::New();
   GradientContainer->clear();
 
-  DwiImageType::SpacingType   spacing =  m_DwiOriginalImage->GetSpacing();
-  DwiImageType::PointType     origin  =  m_DwiOriginalImage->GetOrigin();
+
   DwiImageType::DirectionType direction = m_DwiOriginalImage->GetDirection();
 
   int space;
@@ -724,7 +723,6 @@ unsigned char CIntensityMotionCheck::ImageCheck( DwiImageType::Pointer localDWII
     // space
     itk::MetaDataDictionary                  imgMetaDictionary = localDWIImageToCheck->GetMetaDataDictionary();
     std::vector<std::string>                 imgMetaKeys = imgMetaDictionary.GetKeys();
-    std::vector<std::string>::const_iterator itKey = imgMetaKeys.begin();
     std::string                              metaString;
 
     itk::ExposeMetaData<std::string>(imgMetaDictionary,
@@ -4926,7 +4924,6 @@ bool CIntensityMotionCheck::MakeDefaultProtocol( Protocol *_protocol )
     = m_DwiOriginalImage->GetMetaDataDictionary();
   std::vector<std::string> imgMetaKeys
     = imgMetaDictionary.GetKeys();
-  std::vector<std::string>::const_iterator itKey = imgMetaKeys.begin();
   std::string                              metaString;
 
   itk::ExposeMetaData<std::string>(imgMetaDictionary, "NRRD_space", metaString);
