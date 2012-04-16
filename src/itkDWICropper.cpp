@@ -137,7 +137,8 @@ DWICropper<TImageType>
     = inputPtr->GetMetaDataDictionary();
   std::vector<std::string> imgMetaKeys
     = imgMetaDictionary.GetKeys();
-  std::string metaString;
+  std::vector<std::string>::const_iterator itKey = imgMetaKeys.begin();
+  std::string                              metaString;
 
   //  measurement frame
   if( imgMetaDictionary.HasKey("NRRD_measurement frame") )

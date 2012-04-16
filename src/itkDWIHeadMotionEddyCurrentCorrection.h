@@ -33,9 +33,8 @@
 #include "itkImageRegionIterator.h"
 #include "itkImageRegionIteratorWithIndex.h"
 
-#if (ITK_VERSION_MAJOR < 4)
 #include "itkOrientedImage.h"
-#endif
+
 namespace itk
 {
 class DWIHeadMotionEddyCurrentCorrection
@@ -57,12 +56,8 @@ public:
 
   typedef std::vector<ImageType::Pointer> ImageContainerType;
 
-  typedef itk::VectorImage<float, Dimension> VectorImageType;
-#if (ITK_VERSION_MAJOR < 4)
-  typedef OrientedImage<PixelType, Dimension> OrientImageType;
-#else
-  typedef itk::Image<PixelType, Dimension> OrientImageType;
-#endif
+  typedef itk::VectorImage<float, Dimension>    VectorImageType;
+  typedef OrientedImage<PixelType, Dimension>   OrientImageType;
   typedef std::vector<OrientImageType::Pointer> OrientImageContainerType;
 
   DWIHeadMotionEddyCurrentCorrection();
