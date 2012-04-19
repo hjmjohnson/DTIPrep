@@ -259,15 +259,6 @@ endif()
 #------------------------------------------------------------------------------
 # Configure and build
 #------------------------------------------------------------------------------
-message("HACK
-    -DITK_VERSION_MAJOR:STRING=${ITK_VERSION_MAJOR}
-    -DITK_DIR:PATH=${ITK_DIR}
-    -DVTK_DIR:PATH=${VTK_DIR}
-    -DSlicerExecutionModel_DIR:PATH=${SlicerExecutionModel_DIR}
-    -DBRAINSCommonLib_DIR:PATH=${BRAINSCommonLib_DIR}
-    ----
-    ${COMMON_EXTERNAL_PROJECT_ARGS}
-    ")
 set(proj ${LOCAL_PROJECT_NAME})
 ExternalProject_Add(${proj}
   DEPENDS ${${LOCAL_PROJECT_NAME}_DEPENDENCIES}
@@ -291,3 +282,10 @@ ExternalProject_Add_Step(${proj} forcebuild
     DEPENDERS build
     ALWAYS 1
   )
+
+option(USE_DTIReg "Build DTIReg" OFF)
+if(USE_DTIReg)
+  include(${CMAKE_CURRENT_LIST_DIR}/SuperBuild/External_BatchMake.cmake)
+  message("COMMON_EXTERNAL_PROJECT_ARGS=${COMMON_EXTERNAL_PROJECT_ARGS}")
+  include(${CMAKE_CURRENT_LIST_DIR}/SuperBuild/External_DTIReg.cmake)
+endif()
