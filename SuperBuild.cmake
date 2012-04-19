@@ -212,6 +212,7 @@ list(APPEND ${CMAKE_PROJECT_NAME}_SUPERBUILD_EP_VARS
   ${LOCAL_PROJECT_NAME}_CLI_INSTALL_RUNTIME_DESTINATION:PATH
 
   VTK_DIR:PATH
+  GenerateCLP_DIR:PATH
   SlicerExecutionModel_DIR:PATH
   BRAINSCommonLib_DIR:PATH
 
@@ -286,6 +287,11 @@ ExternalProject_Add_Step(${proj} forcebuild
 option(USE_DTIReg "Build DTIReg" OFF)
 if(USE_DTIReg)
   include(${CMAKE_CURRENT_LIST_DIR}/SuperBuild/External_BatchMake.cmake)
-  message("COMMON_EXTERNAL_PROJECT_ARGS=${COMMON_EXTERNAL_PROJECT_ARGS}")
   include(${CMAKE_CURRENT_LIST_DIR}/SuperBuild/External_DTIReg.cmake)
+endif()
+
+option(USE_DTI_Tract_Stat "Build DTI_Tract_Stat" OFF)
+if(USE_DTI_Tract_Stat)
+#  include(${CMAKE_CURRENT_LIST_DIR}/SuperBuild/External_QWT.cmake)
+  include(${CMAKE_CURRENT_LIST_DIR}/SuperBuild/External_DTI_Tract_Stat.cmake)
 endif()
