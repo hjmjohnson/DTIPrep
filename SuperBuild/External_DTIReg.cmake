@@ -1,7 +1,3 @@
-set(GenerateCLP_DIR
-  ${CMAKE_CURRENT_BINARY_DIR}/SlicerExecutionModel-build/GenerateCLP)
-set(BatchMake_DIR  ${CMAKE_CURRENT_BINARY_DIR}/BatchMake-build)
-
 ExternalProject_Add(DTIReg
   SVN_REPOSITORY https://www.nitrc.org/svn/dtireg/trunk/DTI-Reg
   SOURCE_DIR DTIReg

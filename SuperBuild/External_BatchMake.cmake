@@ -22,5 +22,5 @@ ExternalProject_Add(${proj}
   INSTALL_COMMAND ""
   )
 
-set(BatchMake_DIR ${CMAKE_CURRENT_BINARY_DIR}/BatchMake-build)
 set(BatchMake_DEPEND BatchMake )
+set(BatchMake_DIR  ${CMAKE_CURRENT_BINARY_DIR}/BatchMake-build)
