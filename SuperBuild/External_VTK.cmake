@@ -58,7 +58,6 @@ if(NOT DEFINED ${extProjName}_DIR AND NOT ${USE_SYSTEM_${extProjName}})
   endif()
 
   set(VTK_QT_ARGS)
-  message("${LOCAL_PROJECT_NAME}_USE_QT ${${LOCAL_PROJECT_NAME}_USE_QT}")
   if(${LOCAL_PROJECT_NAME}_USE_QT)
     if(NOT APPLE)
       set(VTK_QT_ARGS
