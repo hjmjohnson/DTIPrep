@@ -25,6 +25,8 @@ endif()
 
 find_package(Git REQUIRED)
 
+option(${LOCAL_PROJECT_NAME}_USE_QT "Turn on to build packages requiring QT" ON)
+
 # I don't know who removed the Find_Package for QT, but it needs to be here
 # in order to build VTK if ${LOCAL_PROJECT_NAME}_USE_QT is set.
 if(${LOCAL_PROJECT_NAME}_USE_QT)
@@ -292,6 +294,11 @@ endif()
 
 option(USE_DTI_Tract_Stat "Build DTI_Tract_Stat" OFF)
 if(USE_DTI_Tract_Stat)
-#  include(${CMAKE_CURRENT_LIST_DIR}/SuperBuild/External_QWT.cmake)
   include(${CMAKE_CURRENT_LIST_DIR}/SuperBuild/External_DTI_Tract_Stat.cmake)
+endif()
+
+option(USE_FVLight "Build FVLight" OFF)
+if(USE_FVLight)
+  include(${CMAKE_CURRENT_LIST_DIR}/SuperBuild/External_QWT.cmake)
+  include(${CMAKE_CURRENT_LIST_DIR}/SuperBuild/External_FVLight.cmake)
 endif()
