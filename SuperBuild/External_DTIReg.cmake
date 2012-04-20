@@ -1,5 +1,6 @@
 ExternalProject_Add(DTIReg
   SVN_REPOSITORY https://www.nitrc.org/svn/dtireg/trunk/DTI-Reg
+  SVN_REVISION -r "18"
   SOURCE_DIR DTIReg
   BINARY_DIR DTIReg-build
   INSTALL_COMMAND ""
@@ -13,6 +14,7 @@ ExternalProject_Add(DTIReg
     -DGenerateCLP_DIR:PATH=${GenerateCLP_DIR}
     # -DOPT_USE_SYSTEM_BatchMake:BOOL=ON
     -DBatchMake_DIR:PATH=${BatchMake_DIR}
+    -DDTIReg_ADDITIONAL_LINK_DIRS:PATH=${CMAKE_CURRENT_BINARY_DIR}/lib
     DEPENDS ${ITK_EXTERNAL_NAME} BatchMake
   )
 
@@ -24,15 +26,3 @@ ExternalProject_Add_Step(DTIReg forcebuild
     DEPENDERS build
     ALWAYS 1
   )
-
-set(DTIReg_FixScript ${CMAKE_CURRENT_LIST_DIR}/DTIRegFix.cmake)
-
-ExternalProject_Add_Step(DTIReg fixCMakeLists
-  COMMAND
-  ${CMAKE_COMMAND}
-  -Dlinkdir=${CMAKE_CURRENT_BINARY_DIR}/lib
-  -Dfixfile=<SOURCE_DIR>/CMakeLists.txt
-  -P ${DTIReg_FixScript}
-  DEPENDEES download
-  DEPENDERS build
-)
