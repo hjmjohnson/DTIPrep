@@ -466,11 +466,8 @@ void CIntensityMotionCheck::GetImagesInformation()
       }
     }
 
-  itk::MetaDataDictionary imgMetaDictionary
-    = m_DwiOriginalImage->GetMetaDataDictionary();                                            //
-  std::vector<std::string> imgMetaKeys
-    = imgMetaDictionary.GetKeys();
-  std::vector<std::string>::const_iterator itKey = imgMetaKeys.begin();
+  itk::MetaDataDictionary                  imgMetaDictionary = m_DwiOriginalImage->GetMetaDataDictionary();                                            //
+  std::vector<std::string> imgMetaKeys =   imgMetaDictionary.GetKeys();
   std::string                              metaString;
 
   TensorReconstructionImageFilterType::GradientDirectionType vect3d;
@@ -483,7 +480,8 @@ void CIntensityMotionCheck::GetImagesInformation()
   DwiImageType::DirectionType direction = m_DwiOriginalImage->GetDirection();
 
   int space;
-  for( ; itKey != imgMetaKeys.end(); itKey++ )
+  
+  for( std::vector<std::string>::const_iterator itKey = imgMetaKeys.begin(); itKey != imgMetaKeys.end(); itKey++ )
     {
     // double x,y,z;
     itk::ExposeMetaData<std::string>(imgMetaDictionary, *itKey, metaString);
@@ -5635,11 +5633,8 @@ bool CIntensityMotionCheck::MakeDefaultProtocol( Protocol *_protocol )
   _protocol->GetImageProtocol(). spacing[2] = m_DwiOriginalImage->GetSpacing()[2];
 
   // space
-  itk::MetaDataDictionary imgMetaDictionary
-    = m_DwiOriginalImage->GetMetaDataDictionary();
-  std::vector<std::string> imgMetaKeys
-    = imgMetaDictionary.GetKeys();
-  std::string                              metaString;
+  itk::MetaDataDictionary imgMetaDictionary = m_DwiOriginalImage->GetMetaDataDictionary();
+  std::string             metaString;
 
   itk::ExposeMetaData<std::string>(imgMetaDictionary, "NRRD_space", metaString);
   if( metaString == "left-anterior-inferior" )

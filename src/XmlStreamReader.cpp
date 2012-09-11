@@ -483,7 +483,7 @@ bool XmlStreamReader::readFile(const QString & fileName, int mode)
   return true;
 }
 
-bool XmlStreamReader::readFile_QCResult(const QString & fileName, int /* xxmode */)
+bool XmlStreamReader::readFile_QCResult(const QString & fileName, int /* mode */)
 {
   QFile file(fileName);
 
@@ -519,46 +519,6 @@ bool XmlStreamReader::readFile_QCResult(const QString & fileName, int /* xxmode 
   InitializeQCRESULTStringValue();
   parseQCResultElement(root);
   return true;
-
-  /*reader.setDevice(&file);
-
-  reader.readNext();
-  while ( !reader.atEnd() )
-  {
-    if ( reader.isStartElement() )
-    {
-      if ( reader.name() == "QCResultSettings" )
-      {
-        readElement_QCResult( mode );
-      }
-      else
-      {
-        reader.raiseError( QObject::tr("Not a ProtocolSettings file") );
-      }
-    }
-    else
-    {
-      reader.readNext();
-    }
-  }
-
-  file.close();
-  if ( reader.hasError() )
-  {
-    std::cerr << "Error: Failed to parse file "
-      << qPrintable(fileName) << ": "
-      << qPrintable( reader.errorString() ) << std::endl;
-    return false;
-  }
-  else if ( file.error() != QFile::NoError )
-  {
-    std::cerr << "Error: Cannot read file " << qPrintable(fileName)
-      << ": " << qPrintable( file.errorString() )
-      << std::endl;
-    return false;
-  }
-  return true;
-  */
 }
 
 void XmlStreamReader::parseQCResultElement( const QDomElement & element)

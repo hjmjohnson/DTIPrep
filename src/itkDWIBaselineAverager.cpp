@@ -247,7 +247,7 @@ DWIBaselineAverager<TVectorImageType>
       }
 
     // gradient dir vectors
-    int temp = 1;
+   int temp = 1;
     for( unsigned int i = 0;
          i < this->m_GradientDirectionContainer->Size();
          i++ )
